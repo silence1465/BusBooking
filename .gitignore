@@ -1,0 +1,33 @@
+# Local secrets and machine settings
+.env
+.env.*
+!.env.example
+auth.json
+.npmrc
+*.pem
+*.key
+.aws/
+.codex/
+.agents/
+.idea/
+.vscode/
+
+# Dependencies and generated output
+node_modules/
+vendor/
+dist/
+coverage/
+*.log
+*.sqlite
+*.sqlite-*
+*.sql
+*.sql.gz
+*.zip
+*.bak
+.phpunit.result.cache
+.phpunit.cache/
+backend/bootstrap/cache/*.php
+
+# Operating system files
+.DS_Store
+Thumbs.db
