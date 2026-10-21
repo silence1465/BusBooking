@@ -1,6 +1,6 @@
 {
-  "name": "ABAA Transport",
-  "short_name": "ABAA",
+  "name": "Unity Transport",
+  "short_name": "Unity",
   "description": "Book bus tickets, pick your seat and pay securely.",
   "start_url": "/",
   "scope": "/",
@@ -9,8 +9,23 @@
   "background_color": "#f7f5ff",
   "theme_color": "#1b1640",
   "icons": [
-    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
