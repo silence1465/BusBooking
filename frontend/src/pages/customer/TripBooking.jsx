@@ -119,7 +119,7 @@ export default function TripBooking() {
     const e = {}
     if (form.passenger_name.trim().length < 2) e.passenger_name = 'Enter the passenger’s full name.'
     if (!/^[0-9+\s-]{9,16}$/.test(form.phone.trim())) e.phone = 'Enter a valid phone number, e.g. 0241234567.'
-    if (form.email && !/^\S+@\S+\.\S+$/.test(form.email)) e.email = 'Enter a valid email or leave it empty.'
+    if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) e.email = 'Enter a valid email address.'
     setErrors(e)
     return Object.keys(e).length === 0
   }
@@ -135,7 +135,7 @@ export default function TripBooking() {
         ...(openSeating ? { seat_count: qty } : { seat_numbers: seats }),
         passenger_name: form.passenger_name.trim(),
         phone: form.phone.trim(),
-        email: form.email.trim() || null,
+        email: form.email.trim(),
       })
       const { authorization_url, booking } = res.data.data
       sessionStorage.setItem('bb_pending_phone', booking.phone)
@@ -258,7 +258,7 @@ export default function TripBooking() {
               <div className="max-w-md space-y-4">
                 <Input label="Full name" value={form.passenger_name} error={errors.passenger_name} onChange={(e) => setForm({ ...form, passenger_name: e.target.value })} autoComplete="name" />
                 <Input label="Phone number" type="tel" inputMode="tel" value={form.phone} error={errors.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} autoComplete="tel" />
-                <Input label="Email (optional)" type="email" value={form.email} error={errors.email} onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" />
+                <Input label="Email Address *" type="email" required value={form.email} error={errors.email} onChange={(e) => setForm({ ...form, email: e.target.value })} autoComplete="email" />
               </div>
             </>
           )}
@@ -271,7 +271,7 @@ export default function TripBooking() {
                 {[
                   ['Passenger', form.passenger_name],
                   ['Phone', form.phone],
-                  ['Email', form.email || 'Not provided'],
+                  ['Email', form.email],
                   ['Pickup point', pickupPoint?.name],
                   ...(byDestination ? [['Destination', chosen?.place]] : []),
                   [openSeating ? 'Seats' : 'Seat numbers', openSeating ? <OpenSeatingBadge key="seats">{qty} seat{qty === 1 ? '' : 's'}, sit anywhere</OpenSeatingBadge> : <SeatBadges key="seats" seats={seats} />],

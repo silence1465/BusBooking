@@ -47,6 +47,17 @@ class StationService
                 throw new BookingException($state['message'], 409);
             }
 
+            // Scheduled trips may only be checked in on their travel date.
+            // Fill-and-go queue trips retain their existing boarding rules.
+            $trip = $booking->trip;
+            if (! in_array($trip->status, Trip::QUEUE_STATUSES, true)
+                && ! $trip->travel_date->isToday()) {
+                throw new BookingException(
+                    'This ticket can only be checked in on its scheduled travel date.',
+                    409
+                );
+            }
+
             $booking->confirmed_at = now();
             $booking->confirmed_by = $by->id;
             $booking->save();
